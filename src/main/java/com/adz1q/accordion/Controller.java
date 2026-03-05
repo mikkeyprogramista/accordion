@@ -1,16 +1,21 @@
 package com.adz1q.accordion;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
+
+    @FXML
+    private Label lblNumber;
+
+    @FXML
+    private Label lblNumbers;
 
     @FXML
     private Spinner<Integer> spiHighRange;
@@ -80,6 +85,14 @@ public class Controller implements Initializable {
                 txtNumbers.appendText(draw(low, high) + ", ");
             }
         });
+
+        spiLowRange.valueProperty().addListener((observableValue, integer, newValue) -> {
+
+        });
+
+        spiHighRange.valueProperty().addListener((observableValue, integer, newValue) -> lblNumber.setText("Zakres losowania od " + spiHighRange.getValue() + " do " + newValue));
+
+        spiCount.valueProperty().addListener((observableValue, integer, newValue) -> lblNumbers.setText(newValue + " losowych liczb"));
     }
 
     private int draw(int low, int high) {

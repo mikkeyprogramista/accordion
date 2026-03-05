@@ -21,10 +21,10 @@
                   <Button fx:id="btnDraw" layoutX="66.0" layoutY="124.0" mnemonicParsing="false" text="Losuj" />
                   <Label layoutX="42.0" layoutY="177.0" text="Ile liczb?" />
                   <Spinner fx:id="spiCount" layoutX="103.0" layoutY="175.0" />
-                  <Label layoutX="404.0" layoutY="154.0" text="Liczby:" />
+                  <Label fx:id="lblNumbers" layoutX="404.0" layoutY="154.0" text="Liczby:" />
                   <TextArea fx:id="txtNumbers" layoutX="380.0" layoutY="179.0" prefHeight="100.0" prefWidth="100.0" />
                   <TextArea fx:id="txtNumber" layoutX="377.0" layoutY="41.0" prefHeight="100.0" prefWidth="100.0" />
-                  <Label layoutX="399.0" layoutY="10.0" text="Liczba" />
+                  <Label fx:id="lblNumber" layoutX="399.0" layoutY="10.0" text="Liczba" />
                   <Button fx:id="btnDrawMany" layoutX="64.0" layoutY="230.0" mnemonicParsing="false" text="Losuj wiele" />
                </children>
             </AnchorPane>
