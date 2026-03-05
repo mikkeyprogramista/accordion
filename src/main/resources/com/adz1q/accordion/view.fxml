@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Accordion maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.adz1q.accordion.Controller">
+  <panes>
+    <TitledPane animated="false" text="Spinner">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="15.0" layoutY="71.0" text="Dolny zakres" />
+                  <Label layoutX="14.0" layoutY="34.0" text="Górny zakres" />
+                  <Spinner fx:id="spiHighRange" layoutX="105.0" layoutY="32.0" />
+                  <Spinner fx:id="spiLowRange" layoutX="105.0" layoutY="72.0" />
+                  <Button fx:id="btnDraw" layoutX="66.0" layoutY="124.0" mnemonicParsing="false" text="Losuj" />
+                  <Label layoutX="42.0" layoutY="177.0" text="Ile liczb?" />
+                  <Spinner fx:id="spiCount" layoutX="103.0" layoutY="175.0" />
+                  <Label layoutX="404.0" layoutY="154.0" text="Liczby:" />
+                  <TextArea fx:id="txtNumbers" layoutX="380.0" layoutY="179.0" prefHeight="100.0" prefWidth="100.0" />
+                  <TextArea fx:id="txtNumber" layoutX="377.0" layoutY="41.0" prefHeight="100.0" prefWidth="100.0" />
+                  <Label layoutX="399.0" layoutY="10.0" text="Liczba" />
+                  <Button fx:id="btnDrawMany" layoutX="64.0" layoutY="230.0" mnemonicParsing="false" text="Losuj wiele" />
+               </children>
+            </AnchorPane>
+         </content>
+    </TitledPane>
+    <TitledPane animated="false" text="untitled 2">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </TitledPane>
+    <TitledPane animated="false" text="untitled 3">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </TitledPane>
+  </panes>
+</Accordion>
