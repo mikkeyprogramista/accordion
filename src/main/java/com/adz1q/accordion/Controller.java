@@ -1,21 +1,15 @@
 package com.adz1q.accordion;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-
-    @FXML
-    private Label lblNumber;
-
-    @FXML
-    private Label lblNumbers;
 
     @FXML
     private Spinner<Integer> spiHighRange;
@@ -30,13 +24,40 @@ public class Controller implements Initializable {
     private Spinner<Integer> spiCount;
 
     @FXML
+    private Label lblNumbers;
+
+    @FXML
     private TextArea txtNumbers;
 
     @FXML
     private TextArea txtNumber;
 
     @FXML
+    private Label lblNumber;
+
+    @FXML
     private Button btnDrawMany;
+
+    @FXML
+    private TextField txtH;
+
+    @FXML
+    private ScrollBar scrlH;
+
+    @FXML
+    private Pane pane;
+
+    @FXML
+    private Rectangle square;
+
+    @FXML
+    private TextField txtV;
+
+    @FXML
+    private ScrollBar scrlV;
+
+    @FXML
+    private CheckBox chxCock;
 
     private int low;
     private int high;
@@ -46,6 +67,7 @@ public class Controller implements Initializable {
     public void initialize(
             URL url,
             ResourceBundle resourceBundle) {
+        // Spinner
         var lowFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 50, 1);
         var highFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(50, 100, 50);
         var countFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 20, 1);
@@ -93,6 +115,35 @@ public class Controller implements Initializable {
         spiHighRange.valueProperty().addListener((observableValue, integer, newValue) -> lblNumber.setText("Zakres losowania od " + spiHighRange.getValue() + " do " + newValue));
 
         spiCount.valueProperty().addListener((observableValue, integer, newValue) -> lblNumbers.setText(newValue + " losowych liczb"));
+
+        // Grid | Scroll
+        scrlH.valueProperty().addListener((observableValue, number, newValue) -> {
+            square.setLayoutX(newValue.doubleValue() * (pane.getWidth() - square.getWidth()) / 100);
+            txtH.setText(String.valueOf(newValue.intValue()));
+
+            if (chxCock.isSelected()) {
+                square.setLayoutY(newValue.doubleValue() * (pane.getWidth() - square.getWidth()) / 100);
+                txtH.setText(txtV.getText());
+            }
+        });
+
+        scrlV.valueProperty().addListener((observableValue, number, newValue) -> {
+            square.setLayoutY(newValue.doubleValue() * (pane.getHeight() - square.getHeight()) / 100);
+            txtV.setText(String.valueOf(newValue.intValue()));
+
+            if (chxCock.isSelected()) {
+                square.setLayoutX(newValue.doubleValue() * (pane.getHeight() - square.getHeight()) / 100);
+                txtH.setText(txtH.getText());
+            }
+        });
+
+        txtH.setOnAction(actionEvent -> {
+            square.setLayoutX(Integer.parseInt(txtH.getText()));
+        });
+
+        txtV.setOnAction(actionEvent -> {
+            square.setLayoutY(Integer.parseInt(txtV.getText()));
+        });
     }
 
     private int draw(int low, int high) {
