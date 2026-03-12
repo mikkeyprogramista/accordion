@@ -3,14 +3,16 @@ package com.adz1q.accordion;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-
     @FXML
     private Spinner<Integer> spiHighRange;
 
@@ -42,7 +44,7 @@ public class Controller implements Initializable {
     private TextField txtH;
 
     @FXML
-    private ScrollBar scrlH;
+    private ScrollBar scrollH;
 
     @FXML
     private Pane pane;
@@ -54,10 +56,31 @@ public class Controller implements Initializable {
     private TextField txtV;
 
     @FXML
-    private ScrollBar scrlV;
+    private ScrollBar scrollV;
 
     @FXML
     private CheckBox chxCock;
+
+    @FXML
+    private RadioButton radioSea;
+
+    @FXML
+    private RadioButton radioMountains;
+
+    @FXML
+    private RadioButton radioWork;
+
+    @FXML
+    private RadioButton radioGym;
+
+    @FXML
+    private Label lblChoice;
+
+    @FXML
+    private ImageView imgView;
+
+    @FXML
+    private ToggleGroup preferences;
 
     private int low;
     private int high;
@@ -117,7 +140,7 @@ public class Controller implements Initializable {
         spiCount.valueProperty().addListener((observableValue, integer, newValue) -> lblNumbers.setText(newValue + " losowych liczb"));
 
         // Grid | Scroll
-        scrlH.valueProperty().addListener((observableValue, number, newValue) -> {
+        scrollH.valueProperty().addListener((observableValue, number, newValue) -> {
             square.setLayoutX(newValue.doubleValue() * (pane.getWidth() - square.getWidth()) / 100);
             txtH.setText(String.valueOf(newValue.intValue()));
 
@@ -127,7 +150,7 @@ public class Controller implements Initializable {
             }
         });
 
-        scrlV.valueProperty().addListener((observableValue, number, newValue) -> {
+        scrollV.valueProperty().addListener((observableValue, number, newValue) -> {
             square.setLayoutY(newValue.doubleValue() * (pane.getHeight() - square.getHeight()) / 100);
             txtV.setText(String.valueOf(newValue.intValue()));
 
@@ -137,12 +160,18 @@ public class Controller implements Initializable {
             }
         });
 
-        txtH.setOnAction(actionEvent -> {
-            square.setLayoutX(Integer.parseInt(txtH.getText()));
-        });
+        txtH.setOnAction(actionEvent ->
+                square.setLayoutX(Integer.parseInt(txtH.getText())));
 
-        txtV.setOnAction(actionEvent -> {
-            square.setLayoutY(Integer.parseInt(txtV.getText()));
+        txtV.setOnAction(actionEvent ->
+                square.setLayoutY(Integer.parseInt(txtV.getText())));
+
+
+        preferences.selectedToggleProperty().addListener((observableValue, toggle, newToggle) -> {
+            RadioButton selected = (RadioButton) newToggle;
+            lblChoice.setText("Selected: " + selected.getText().toUpperCase());
+            Image image = new Image(getClass().getResourceAsStream("/images/" + selected.getText().toLowerCase() + ".png"));
+            imgView.setImage(image);
         });
     }
 
